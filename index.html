@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lux Atelier | Открытие скоро</title>
+  <meta name="description" content="Сайт в разработке. Уютный магазин подарков, декора и небольших коллекций для дома." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com https://images.pexels.com; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none';" />
+  <style>
+    :root {
+      --bg: #f7f0ea;
+      --panel: rgba(255,255,255,0.72);
+      --panel-strong: #fffaf5;
+      --text: #2d241f;
+      --muted: #655956;
+      --line: rgba(85, 56, 44, 0.12);
+      --primary: #c57b56;
+      --primary-dark: #7d4a38;
+      --shadow: 0 22px 50px rgba(88, 52, 40, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(247,240,234,0.84), rgba(255,251,247,0.96)),
+        url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(255,255,255,0.38);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 24px;
+      box-shadow: 0 12px 32px rgba(80, 58, 46, 0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #e8b792);
+      box-shadow: 0 10px 26px rgba(197, 123, 86, 0.3);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 14px 28px rgba(197, 123, 86, 0.25);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.48);
+      border: 1px solid var(--line);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 48px;
+      padding: 56px 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(197, 123, 86, 0.1);
+      color: var(--primary-dark);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 18px 0 16px;
+      font-size: clamp(2.9rem, 5vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 620px;
+      font-size: 1.06rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 26px;
+    }
+
+    .stat {
+      min-width: 120px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 560px;
+    }
+
+    .image-main {
+      position: absolute;
+      right: 24px;
+      top: 20px;
+      width: 76%;
+      height: 72%;
+      border-radius: 30px;
+      background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+      border: 10px solid rgba(255,255,255,0.5);
+      box-shadow: var(--shadow);
+    }
+
+    .image-card {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 58%;
+      padding: 18px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .mini {
+      width: 100%;
+      height: 170px;
+      border-radius: 18px;
+      background: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=700&q=80') center/cover no-repeat;
+      margin-bottom: 12px;
+    }
+
+    .card-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .section {
+      margin-top: 38px;
+      padding: 26px 12px 8px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.06em;
+    }
+
+    .section-note {
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.48);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(78, 50, 42, 0.04);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, rgba(197,123,86,0.12), rgba(232,183,146,0.38));
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 44px 0 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .topbar { flex-wrap: wrap; }
+      .nav { width: 100%; justify-content: center; }
+      .visual { min-height: 440px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">L</span>
+        <span>Lux Atelier</span>
+      </div>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#about">О нас</a>
+        <a href="#collections">Коллекции</a>
+        <a href="#services">Услуги</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="cta" href="#contacts">Написать</a>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div>
+          <span class="eyebrow">Открытие скоро</span>
+          <h1>Тёплый дом и стильные подарки.</h1>
+          <p class="lead">
+            Мы создаём уютные вещи для дома, подарки и небольшие коллекции в современном стиле.
+            Сейчас ведём финальные штрихи перед запуском, а сайт уже готов в понятном и красивом формате.
+          </p>
+          <div class="hero-actions">
+            <a class="cta" href="#collections">Смотреть коллекции</a>
+            <a class="cta secondary" href="#contacts">Оставить заявку</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>150+</strong>
+              <span>готовых наборов</span>
+            </div>
+            <div class="stat">
+              <strong>8 лет</strong>
+              <span>опыта в стиле</span>
+            </div>
+            <div class="stat">
+              <strong>1.4k</strong>
+              <span>друзей проекта</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="image-main"></div>
+          <div class="image-card">
+            <div class="mini"></div>
+            <div class="card-label">Новинка</div>
+            <div class="card-price">
+              <span>Подарочный набор</span>
+              <span>от 1 990 ₽</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="collections">
+        <div class="section-head">
+          <h2>Что будет в открытии</h2>
+          <div class="section-note">Небольшие коллекции, уютные детали и подарки для дома, которые создают атмосферу спокойствия и тепла.</div>
+        </div>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon">✦</div>
+            <h3>Подарочные наборы</h3>
+            <p>Минималистичные наборы для праздников, подарков и уютных поводов в жизни.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">☕</div>
+            <h3>Домашний декор</h3>
+            <p>Светлые детали, аксессуары и предметы, которые делают пространство уютнее.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">❀</div>
+            <h3>Сезонные коллекции</h3>
+            <p>Подборки для разных времен года, в том числе для праздников и особых моментов.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section-head">
+          <h2>Как мы будем работать</h2>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon">01</div>
+            <h3>Подбор стиля</h3>
+            <p>Мы помогаем выбрать наборы в соответствии с интерьером, поводом и общей атмосферой.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">02</div>
+            <h3>Пакетные наборы</h3>
+            <p>Готовые наборы для подарков, праздников и небольших неожиданных радостей.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">03</div>
+            <h3>Личный подход</h3>
+            <p>Каждое предложение продумывается так, чтобы воспринималось как понятная и приятная услуга.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contacts">
+      <p>Сайт в разработке · Lux Atelier</p>
+      <p>hello@luxatelier.example · +7 (495) 000-00-00</p>
+    </footer>
+  </div>
+</body>
+</html>
